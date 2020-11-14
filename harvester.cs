@@ -1,21 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿/*
+* Лабораторная работа № 2
+* Абстрактные сущности и связи между ними
+* Задание 2
+* Выполнил студент гр. 525i Мельник В.О.
+*/
 
 namespace laba2NAME
 {
     public class Harvester
     {
+        /// <summary>
+        /// бренд
+        /// </summary>
         private readonly string brand;
+        /// <summary>
+        /// модель
+        /// </summary>
         private readonly string model;
+        /// <summary>
+        /// режим, в котором аботает прибор
+        /// </summary>
         private mode mode;
-        private bool state = false;
+        /// <summary>
+        /// состояние комбайна
+        /// </summary>
+        private bool harvesterSate = false;
+        /// <summary>
+        /// серийный номер
+        /// </summary>
         private static int serialNumber = -1;
 
         private mode menuItem = mode.blender;
 
+        /// <summary>
+        /// конструктор, который вставляет none
+        /// </summary>
         public Harvester()
         {
             this.brand = "Noname";
@@ -23,12 +42,18 @@ namespace laba2NAME
             serialNumber++;
         }
 
+        /// <summary>
+        /// конструктор, который вставляет бренд
+        /// </summary>
         public Harvester(string brand)
         {
             this.brand = brand;
             serialNumber++;
         }
 
+        /// <summary>
+        /// конструктор, который вставляет бренд, модель
+        /// </summary>
         public Harvester(string brand, string model)
         {
             this.brand = brand;
@@ -37,11 +62,14 @@ namespace laba2NAME
         }
 
 
+        /// <summary>
+        /// конструктор, который вставляет бренд, модель и режим работы
+        /// </summary>
         public Harvester(string brand, string model, int menuItem)
         {
             this.brand = brand;
             this.model = model;
-            switch(menuItem)
+            switch (menuItem)
             {
                 case 0: this.menuItem = mode.slicing; break;
                 case 1: this.menuItem = mode.blender; break;
@@ -51,33 +79,56 @@ namespace laba2NAME
             serialNumber++;
         }
 
+        /// <summary>
+        /// вывод параметров
+        /// </summary>
         public string Print()
         {
-            return "Current item of menu: " + this.menuItem + "\nBrand: " +this.brand + "\nModel: " + this.model + "\nState(ON or OFF): " + this.state.ToString() + "\nSerial number: " + serialNumber + "\n";
+            return "Current item of menu: " + this.menuItem + "\nBrand: " + this.brand + "\nModel: " + this.model + "\nState(ON or OFF): " + this.harvesterSate.ToString() + "\nSerial number: " + serialNumber + "\n";
 
         }
-        public void SetState(bool state)
+        /// <summary>
+        /// установка статуса
+        /// </summary>
+        public void setState(bool state)
         {
-            this.state = state;
+            this.harvesterSate = state;
         }
 
-
-
-
-
-        public void status()
+        /// <summary>
+        /// изменение статуса вкл или выкл
+        /// </summary>
+        public void setHarvesterState(bool harvesterState)
         {
-            throw new System.NotImplementedException();
+            this.harvesterSate = harvesterState;
         }
 
-        public void SwitchModeNext()
+
+
+
+        /// <summary>
+        /// возврат модели
+        /// </summary>
+        public string getModel()
         {
-            mode +=1;
+            return this.model;
         }
 
-        public void SwitchModPrev()
+        /// <summary>
+        /// возврат бренда
+        /// </summary>
+        public string getBrand()
         {
-            mode -= 1;
+            return this.brand;
         }
+
+        /// <summary>
+        /// статус(вкл или выкл)
+        /// </summary>
+        public bool isHarvesterState()
+        {
+            return this.harvesterSate;
+        }
+
     }
 }
