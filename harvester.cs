@@ -30,6 +30,9 @@ namespace laba2NAME
         /// </summary>
         private static int serialNumber = -1;
 
+        /// <summary>
+        /// дефолтній режим
+        /// </summary>
         private mode menuItem = mode.blender;
 
         /// <summary>
